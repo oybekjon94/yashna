@@ -13,6 +13,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.oybekdev.plant_app.presentation.sign_up.SignUpScreen
 import com.oybekdev.plant_app.presentation.signIn.WelcomScreen
 import com.oybekdev.plant_app.presentation.signIn.components.LoginScreen
 import com.oybekdev.plant_app.ui.theme.PlantappTheme
@@ -22,6 +23,11 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             PlantappTheme {
+            NavigationView()
+            }
+        }
+    }
+}
                 // A surface container using the 'background' color from the theme
                NavigationView()
             }
@@ -33,6 +39,10 @@ class MainActivity : ComponentActivity() {
 fun NavigationView(){
     val navController = rememberNavController()
 
+    NavHost(navController = navController, startDestination = "signup" ){
+        composable("signup"){ SignUpScreen(navController)}
+    }
+}
     NavHost(navController = navController, startDestination = "welcome"){
         composable("welcome"){ WelcomScreen(navController)}
         composable("login"){LoginScreen(navController)}
